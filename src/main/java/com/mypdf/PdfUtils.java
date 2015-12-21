@@ -37,8 +37,6 @@ public class PdfUtils {
     private File logFile;
 
     public PdfUtils() {
-        rotatedDocuments = new ArrayList<>();
-        errors = new ArrayList<>();
         initLogger();
     }
 
@@ -61,6 +59,8 @@ public class PdfUtils {
      * @return Array of successfully rotated documents or array of errors if operation failed.
      */
     public String[] rotateLandscape(String[] inputFiles, String[] outputFiles) {
+        rotatedDocuments = new ArrayList<>();
+        errors = new ArrayList<>();
         if (!checkInput(inputFiles, outputFiles)) return getErrorArray();
         for (int i = 0; i < inputFiles.length; i++) {
             rotateLandscapeDoc(inputFiles[i], outputFiles[i]);
@@ -75,6 +75,7 @@ public class PdfUtils {
      * @return Name of merged document or error message
      */
     public String merge(String[] filesToMerge, String outputFile) {
+        errors = new ArrayList<>();
         if (isInputEmpty(filesToMerge) || StringUtils.isEmpty(outputFile)) return EMPTY_INPUT;
         try {
             PDFMergerUtility mergerUtility = new PDFMergerUtility();

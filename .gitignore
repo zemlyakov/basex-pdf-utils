@@ -41,6 +41,6 @@ Thumbs.db
 pdf-utils.iml
 .idea
 
-# Docs #
+# Maven #
 ######################
-docs
+target

@@ -36,30 +36,25 @@ public class PdfUtilsTest {
     @Test
     @SuppressWarnings("unchecked")
     public void rotateLandscapeTest() throws IOException, URISyntaxException {
-        PdfUtils pdfUtils;
+        PdfUtils pdfUtils = new PdfUtils();
         String[] result;
 
-        pdfUtils = new PdfUtils();
         result = pdfUtils.rotateLandscape(new String[]{}, outputFiles);
         assertTrue(result.length == 2);
         assertTrue(PdfUtils.EMPTY_INPUT.equals(result[1]));
 
-        pdfUtils = new PdfUtils();
         result = pdfUtils.rotateLandscape(inputFiles, null);
         assertTrue(result.length == 2);
         assertTrue(PdfUtils.EMPTY_INPUT.equals(result[1]));
 
-        pdfUtils = new PdfUtils();
         result = pdfUtils.rotateLandscape(Arrays.copyOfRange(inputFiles, 0, 1), outputFiles);
         assertTrue(result.length == 2);
         assertTrue(PdfUtils.INPUT_OUTPUT_SIZE_ERROR.equals(result[1]));
 
-        pdfUtils = new PdfUtils();
         result = pdfUtils.rotateLandscape(inputFiles, Arrays.copyOfRange(inputFiles, 1, 2));
         assertTrue(result.length == 2);
         assertTrue(PdfUtils.INPUT_OUTPUT_SIZE_ERROR.equals(result[1]));
 
-        pdfUtils = new PdfUtils();
         result = pdfUtils.rotateLandscape(inputFiles, outputFiles);
         assertArrayEquals(outputFiles, result);
 
